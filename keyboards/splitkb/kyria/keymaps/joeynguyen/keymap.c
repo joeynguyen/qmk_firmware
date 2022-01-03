@@ -34,14 +34,16 @@ enum layers {
 // #define CTL_QUOT MT(MOD_RCTL, KC_QUOTE)
 // #define CTL_MINS MT(MOD_RCTL, KC_MINUS)
 // #define ALT_ENT  MT(MOD_LALT, KC_ENT)
-#define SHIFT_Z  LSFT_T(KC_Z)
-#define ALT_X LCTL_T(KC_X),
-#define CTRL_C LALT_T(KC_C),
-#define GUI_V LGUI_T(KC_V),
+#define SHIFT_Z     LSFT_T(KC_Z)
+#define ALT_X       LALT_T(KC_X)
+#define CTRL_C      LCTL_T(KC_C)
+#define GUI_V       LGUI_T(KC_V)
 #define SHIFT_SLSH  LSFT_T(KC_SLSH)
-#define ALT_DOT LCTL_T(KC_DOT),
-#define CTRL_COMM LALT_T(KC_COMM),
-#define GUI_M LGUI_T(KC_M),
+#define ALT_DOT     LALT_T(KC_DOT)
+#define CTRL_COMM   LCTL_T(KC_COMM)
+#define GUI_M       LGUI_T(KC_M)
+#define S_LBRC      LSFT_T(KC_LBRC)
+#define S_RBRC      LSFT_T(KC_RBRC)
 
 #define SPECIAL LCAG(KC_SPC) // Hold Left Control, Alt and GUI and press Space
 
@@ -61,14 +63,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |--------+-------+------+------+------+------+-------------.    ,-------------+------+------+---------+---------+----------+-------|
  * | F-keys |Shft/Z |Alt/X |Ctrl/C|Gui/V |   B  | Tab  | Home |    | End | Enter |  N   |Gui/M |Ctrl/ ,< | Alt/ .> | Shft/ /? |  - _  |
  * `--------+-------+------+------+------+------+------+------|    |------+------+------+------+---------+---------+----------+-------'
- *                        | Mute | [  {  |Space |Raise | Esc  |    | Del  |Lower | Bkspc|  ] } | Special |
- *                        `-----------------------------------'    `-------------------------------------'
+ *                         | Mute |Shft[{|Space |Raise | Esc  |    | Del  |Lower | Bkspc|Shft]}| Special |
+ *                         `----------------------------------'    `-------------------------------------'
  */
     [_QWERTY] = LAYOUT(
      KC_GRV  , KC_Q  ,  KC_W   , KC_E  ,   KC_R ,   KC_T ,                                        KC_Y   ,   KC_U, KC_I     ,   KC_O , KC_P     , KC_EQL ,
      KC_BSLS , KC_A  ,  KC_S   , KC_D  ,   KC_F ,   KC_G ,                                        KC_H   ,   KC_J, KC_K     ,   KC_L , KC_SCLN  , KC_QUOT,
      FKEYS   ,SHIFT_Z,  ALT_X  , CTRL_C,   GUI_V,   KC_B , KC_TAB ,KC_HOME,     KC_END  ,KC_ENT , KC_N   ,  GUI_M, CTRL_COMM, ALT_DOT,SHIFT_SLSH, KC_MINS,
-                             KC_KB_MUTE, KC_LBRC,  KC_SPC,  RAISE , KC_ESC,     KC_DEL  ,LOWER  , KC_BSPC,KC_RBRC, SPECIAL
+                             KC_KB_MUTE, S_LBRC ,  KC_SPC,  RAISE , KC_ESC,     KC_DEL  ,LOWER  , KC_BSPC, S_RBRC, SPECIAL
     ),
 
 /*
@@ -99,7 +101,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+--------+--------+--------+--------+-------|                                   |------+-------+-------+-------+------+-------|
  * |      |MouseLt |MouseDn |MouseRt | LtClck |       |                                   |      | Play  | Prev  | Next  |      |       |
  * |------+--------+--------+--------+--------+-------+-------------.       ,-------------+------+-------+-------+-------+------+-------|
- * |      |        |        |        | MidClck| Accl0 |Accl1 |Accl2 |       |      |      |      | VolDn | VolUp |VolMut |      |       |
+ * |      |        |        |        | MidClck| Accl0 |Accl1 |Accl2 |       |      |      |      | VolDn | VolUp |VolMute|      |       |
  * `------------------------+--------+--------+-------+------+------|       |------+------+------+-------+-------+----------------------'
  *                          |        |        |       |      |      |       |      |      |      |       |       |
  *                          `---------------------------------------'       `------------------------------------'
