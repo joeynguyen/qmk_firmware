@@ -19,7 +19,7 @@ enum layers {
     _QWERTY = 0,
     _LOWER,
     _RAISE,
-    _FUNCTION,
+    _MOUSE,
 };
 
 
@@ -28,7 +28,7 @@ enum layers {
 
 #define LOWER    MO(_LOWER)
 #define RAISE    MO(_RAISE)
-#define FKEYS    MO(_FUNCTION)
+#define MOUSE    MO(_MOUSE)
 
 // #define CTL_ESC  MT(MOD_LCTL, KC_ESC)
 // #define CTL_QUOT MT(MOD_RCTL, KC_QUOTE)
@@ -44,6 +44,9 @@ enum layers {
 #define GUI_M       RGUI_T(KC_M)
 #define S_LBRC      LSFT_T(KC_LBRC)
 #define S_RBRC      RSFT_T(KC_RBRC)
+#define RAIS_ESC    LT(RAISE, KC_ESC)
+#define MOUS_HOME   LT(MOUSE, KC_HOME)
+#define MOUS_END    LT(MOUSE, KC_HOME)
 
 #define SPECIAL LCAG(KC_SPC) // Hold Left Control, Alt and GUI and press Space
 
@@ -60,61 +63,41 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |  Tab   |   Q   |   W  |   E  |   R  |   T  |                                |  Y   |   U  |    I    |    O    |     P    |  + =  |
  * |--------+-------+------+------+------+------|                                |------+------+---------+---------+----------+-------|
  * |  \ |   |   A   |   S  |   D  |   F  |   G  |                                |  H   |   J  |    K    |    L    |   ;  :   |  ' "  |
- * |--------+-------+------+------+------+------+-------------.    ,-------------+------+------+---------+---------+----------+-------|
- * | F-keys |Shft/Z |Alt/X |Ctrl/C|Gui/V |   B  | Tab  | Home |    | End | Enter |  N   |Gui/M |Ctrl/ ,< | Alt/ .> | Shft/ /? |  - _  |
- * `--------+-------+------+------+------+------+------+------|    |------+------+------+------+---------+---------+----------+-------'
- *                         | Mute |Shft[{|Space |Raise | Esc  |    | Del  |Lower | Bkspc|Shft]}| Special |
- *                         `----------------------------------'    `-------------------------------------'
+ * |--------+-------+------+------+------+------+--------------.    ,-------------+------+------+---------+---------+----------+-------|
+ * | Mouse  |Shft/Z |Alt/X |Ctrl/C|Gui/V |   B  |  Tab  |M/Home|    |M/End | Enter |  N   |Gui/M |Ctrl/ ,< | Alt/ .> | Shft/ /? |  - _  |
+ * `--------+-------+------+------+------+------+-------+------|    |------+------+------+------+---------+---------+----------+-------'
+ *                         | Mute |Shft[{|Space |Rse/Esc| Esc  |    | Del  |Lower | Bkspc|Shft]}| Special |
+ *                         `-----------------------------------'    `-------------------------------------'
  */
     [_QWERTY] = LAYOUT(
-     KC_GRV  , KC_Q  ,  KC_W   , KC_E  ,   KC_R ,   KC_T ,                                        KC_Y   ,   KC_U, KC_I     ,   KC_O , KC_P     , KC_EQL ,
-     KC_BSLS , KC_A  ,  KC_S   , KC_D  ,   KC_F ,   KC_G ,                                        KC_H   ,   KC_J, KC_K     ,   KC_L , KC_SCLN  , KC_QUOT,
-     FKEYS   ,SHIFT_Z,  ALT_X  , CTRL_C,   GUI_V,   KC_B , KC_TAB ,KC_HOME,     KC_END  ,KC_ENT , KC_N   ,  GUI_M, CTRL_COMM, ALT_DOT,SHIFT_SLSH, KC_MINS,
-                             KC_KB_MUTE, S_LBRC ,  KC_SPC,  RAISE , KC_ESC,     KC_DEL  ,LOWER  , KC_BSPC, S_RBRC, SPECIAL
+     KC_GRV  , KC_Q  ,  KC_W   , KC_E  ,   KC_R ,   KC_T ,                                          KC_Y   , KC_U  , KC_I     ,   KC_O , KC_P     , KC_EQL ,
+     KC_BSLS , KC_A  ,  KC_S   , KC_D  ,   KC_F ,   KC_G ,                                          KC_H   , KC_J  , KC_K     ,   KC_L , KC_SCLN  , KC_QUOT,
+     MOUSE   ,SHIFT_Z,  ALT_X  , CTRL_C,   GUI_V,   KC_B , KC_TAB ,MOUS_HOME,     MOUS_END ,KC_ENT ,KC_N   , GUI_M , CTRL_COMM, ALT_DOT,SHIFT_SLSH, KC_MINS,
+                             KC_KB_MUTE, S_LBRC ,  KC_SPC,RAIS_ESC,   KC_ESC,     KC_DEL  ,LOWER  , KC_BSPC, S_RBRC, SPECIAL
     ),
 
 /*
- * Lower Layer: Numbers and Navigation
+ * Lower Layer: Numbers and Arrow/Scroll Navigation
  *
  * ,-------------------------------------------.                                ,--------------------------------------------.
  * |        |  1   |  2   |  3   |  4   |  5   |                                |   6  |  7   |  8   |  9   |   0   |        |
  * |--------+------+------+------+------+------|                                |------+------+------+------+-------+--------|
- * |        |      |      |      |      |      |                                | Left | Down |  Up  |Right | Home  |  End   |
+ * |ScrlLt  |ScrlRt|PgDn  |ScrlDn|ScrlUp| PgUp |                                | Left | Down |  Up  |Right | Home  |  End   |
  * |--------+------+------+------+------+------+-------------.    ,-------------+------+------+------+------+-------+--------|
- * |        |      |      |      |      |      |      | PgDn |    | PgUp |      | PgDn | ScrlDn | ScrlUp | PgUp |ScrlLt | ScrlRt |
+ * |        |      |      |      |      |      |      | PgDn |    | PgUp |      |      |        |        |      |       |    |
  * `----------------------+------+------+------+------+------|    |------+------+------+------+------+-----------------------'
  *                        |      |      |      |      |      |    |      |      |      |      |      |
  *                        `----------------------------------'    `----------------------------------'
  */
     [_LOWER] = LAYOUT(
       _______,   KC_1 ,   KC_2 ,   KC_3 ,   KC_4 ,   KC_5 ,                                             KC_6 ,   KC_7 ,   KC_8 ,   KC_9 ,   KC_0 , _______,
-      _______, _______, _______, _______, _______, _______,                                           KC_LEFT, KC_DOWN,  KC_UP , KC_RGHT, KC_HOME,  KC_END,
-      _______, _______, _______, _______, _______, _______, _______, KC_PGDN,       KC_PGUP, _______, KC_PGDN, KC_WH_D, KC_WH_U, KC_PGUP, KC_WH_L, KC_WH_R,
+      KC_WH_L, KC_WH_R, KC_PGDN, KC_WH_D, KC_WH_U, KC_PGUP,                                           KC_LEFT, KC_DOWN,  KC_UP , KC_RGHT, KC_HOME,  KC_END,
+      _______, _______, _______, _______, _______, _______, _______, KC_PGDN,       KC_PGUP, _______, _______, _______, _______, _______, _______, _______,
                                  _______, _______, _______, _______, _______,       _______, _______, _______, _______, _______
     ),
 
 /*
- * Raise Layer: Mouse Nav and Media
- *
- * ,------------------------------------------.                                           ,---------------------------------------------.
- * |      |        |MouseUp |        | RtClck |       |                                   |      |       |       |       |      |       |
- * |------+--------+--------+--------+--------+-------|                                   |------+-------+-------+-------+------+-------|
- * |      |MouseLt |MouseDn |MouseRt | LtClck |       |                                   |      | Play  | Prev  | Next  |      |       |
- * |------+--------+--------+--------+--------+-------+-------------.       ,-------------+------+-------+-------+-------+------+-------|
- * |      |        |        |        | MidClck| Accl0 |Accl1 |Accl2 |       |      |      |      | VolDn | VolUp |VolMute|      |       |
- * `------------------------+--------+--------+-------+------+------|       |------+------+------+-------+-------+----------------------'
- *                          |        |        |       |      |      |       |      |      |      |       |       |
- *                          `---------------------------------------'       `------------------------------------'
- */
-    [_RAISE] = LAYOUT(
-      _______, _______, KC_MS_U, _______, KC_BTN2, _______,                                         _______, _______, _______, _______, _______, _______,
-      _______, KC_MS_L, KC_MS_D, KC_MS_R, KC_BTN1, _______,                                         _______, KC_MPLY, KC_MRWD, KC_MFFD, _______, _______,
-      _______, _______, _______, _______, KC_BTN3, KC_ACL0, KC_ACL1, KC_ACL2,     _______, _______, _______, KC_VOLD, KC_VOLU, KC_MUTE, _______, _______,
-                                 _______, _______, _______, _______, _______,     _______, _______, _______, _______, _______
-    ),
-
-/*
- * Function Layer: Symbols and Function keys
+ * Raise Layer: Symbols and Function keys
  *
  * ,-----------------------------------------.                                ,------------------------------------------.
  * |      |  !   |  @   |  #   |  $   |  %   |                                |   ^  |   &   |  *   |  (  |  )   |       |
@@ -126,13 +109,32 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *                      |      |      |      |      |      |    |      |      |      |      |      |
  *                      `----------------------------------'    `----------------------------------'
  */
-    [_FUNCTION] = LAYOUT(
+    [_RAISE] = LAYOUT(
       _______,  KC_EXLM,  KC_AT  , KC_HASH, KC_DLR , KC_PERC,                                         KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN, _______,
       KC_F1  ,  KC_F2  ,  KC_F3  , KC_F4  , KC_F5  , KC_F6  ,                                         KC_F7  , KC_F8  , KC_F9  , KC_F10 , KC_F11 , KC_F12 ,
       _______,  _______,  _______, _______, _______, _______, _______, KC_CAPS,     KC_PSCR, _______, _______, _______, _______, _______, _______, _______,
                                    _______, _______, _______, _______, _______,     _______, _______, _______, _______, _______
     ),
 
+/*
+ * Mouse Layer: Mouse Nav and Media
+ *
+ * ,------------------------------------------.                                           ,---------------------------------------------.
+ * |      |        |MouseUp |        | RtClck |       |                                   |      |       |       |       |      |       |
+ * |------+--------+--------+--------+--------+-------|                                   |------+-------+-------+-------+------+-------|
+ * |      |MouseLt |MouseDn |MouseRt | LtClck |       |                                   |      | Play  | Prev  | Next  |      |       |
+ * |------+--------+--------+--------+--------+-------+-------------.       ,-------------+------+-------+-------+-------+------+-------|
+ * |      |        |        |        | MidClck| Accl0 |Accl1 |Accl2 |       |      |      |      | VolDn | VolUp |VolMute|      |       |
+ * `------------------------+--------+--------+-------+------+------|       |------+------+------+-------+-------+----------------------'
+ *                          |        |        |       |      |      |       |      |      |      |       |       |
+ *                          `---------------------------------------'       `------------------------------------'
+ */
+    [_MOUSE] = LAYOUT(
+      _______, _______, KC_MS_U, _______, KC_BTN2, _______,                                         _______, _______, _______, _______, _______, _______,
+      _______, KC_MS_L, KC_MS_D, KC_MS_R, KC_BTN1, _______,                                         _______, KC_MPLY, KC_MRWD, KC_MFFD, _______, _______,
+      _______, _______, _______, _______, KC_BTN3, KC_ACL0, KC_ACL1, KC_ACL2,     _______, _______, _______, KC_VOLD, KC_VOLU, KC_MUTE, _______, _______,
+                                 _______, _______, _______, _______, _______,     _______, _______, _______, _______, _______
+    ),
 
 // /*
 //  * Layer template
