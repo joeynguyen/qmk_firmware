@@ -38,12 +38,12 @@ enum layers {
 #define ALT_X       LALT_T(KC_X)
 #define CTRL_C      LCTL_T(KC_C)
 #define GUI_V       LGUI_T(KC_V)
-#define SHIFT_SLSH  LSFT_T(KC_SLSH)
-#define ALT_DOT     LALT_T(KC_DOT)
-#define CTRL_COMM   LCTL_T(KC_COMM)
-#define GUI_M       LGUI_T(KC_M)
+#define SHIFT_SLSH  RSFT_T(KC_SLSH)
+#define ALT_DOT     RALT_T(KC_DOT)
+#define CTRL_COMM   RCTL_T(KC_COMM)
+#define GUI_M       RGUI_T(KC_M)
 #define S_LBRC      LSFT_T(KC_LBRC)
-#define S_RBRC      LSFT_T(KC_RBRC)
+#define S_RBRC      RSFT_T(KC_RBRC)
 
 #define SPECIAL LCAG(KC_SPC) // Hold Left Control, Alt and GUI and press Space
 
