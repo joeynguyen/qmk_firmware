@@ -34,19 +34,32 @@ enum layers {
 // #define CTL_QUOT MT(MOD_RCTL, KC_QUOTE)
 // #define CTL_MINS MT(MOD_RCTL, KC_MINUS)
 // #define ALT_ENT  MT(MOD_LALT, KC_ENT)
-#define SHIFT_Z     LSFT_T(KC_Z)
-#define ALT_X       LALT_T(KC_X)
 #define CTRL_C      LCTL_T(KC_C)
+#define C_BSLS      LCTL_T(KC_BSLS)
+#define C_QUOT      RCTL_T(KC_QUOT)
 #define GUI_V       LGUI_T(KC_V)
-#define SHIFT_SLSH  RSFT_T(KC_SLSH)
-#define ALT_DOT     RALT_T(KC_DOT)
 #define CTRL_COMM   RCTL_T(KC_COMM)
 #define GUI_M       RGUI_T(KC_M)
-#define S_LBRC      LSFT_T(KC_LBRC)
-#define S_RBRC      RSFT_T(KC_RBRC)
-#define RAIS_ESC    LT(RAISE, KC_ESC)
+#define A_LBRC      LALT_T(KC_LBRC)
+#define A_RBRC      RALT_T(KC_RBRC)
+#define S_ESC       LSFT_T(KC_ESC)
+#define S_EQL       RSFT_T(KC_EQL)
 #define MOUS_HOME   LT(MOUSE, KC_HOME)
-#define MOUS_END    LT(MOUSE, KC_HOME)
+#define MOUS_END    LT(MOUSE, KC_END)
+
+#define LCA_GRV     LCA_T(KC_GRV)
+#define LCG_Q       MT(MOD_LCTL | MOD_LGUI, KC_Q)
+#define LSG_E       LSG_T(KC_E)
+#define LAG_W       LAG_T(KC_W)
+#define LSA_R       LSA_T(KC_R)
+#define LSC_T       MT(MOD_LSFT | MOD_LCTL, KC_T)
+#define LCA_DEL     LCA_T(KC_DEL)
+#define RCG_P       MT(MOD_RCTL | MOD_RGUI, KC_P)
+#define RSG_I       RSG_T(KC_I)
+#define RAG_O       RAG_T(KC_O)
+#define RSA_U       RSA_T(KC_U)
+#define RSC_Y       MT(MOD_RSFT | MOD_RCTL, KC_Y)
+
 
 #define SPECIAL LCAG(KC_SPC) // Hold Left Control, Alt and GUI and press Space
 
@@ -59,28 +72,28 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 /*
  * Base Layer: QWERTY
  *
- * ,--------------------------------------------.                                ,--------------------------------------------------.
- * |  Tab   |   Q   |   W  |   E  |   R  |   T  |                                |   Y  |   U  |    I    |    O   |     P   |  + =  |
- * |--------+-------+------+------+------+------|                                |------+------+---------+--------+---------+-------|
- * |  \ |   |   A   |   S  |   D  |   F  |   G  |                                |   H  |   J  |    K    |    L   |   ;  :  |  ' "  |
- * |--------+-------+------+------+------+------+--------------.    ,------------+------+------+---------+--------+---------+-------|
- * | Mouse  |Shft/Z |Alt/X |Ctrl/C|Gui/V |   B  |  Tab  |M/Home|    |M/End |Enter|   N  |Gui/M |Ctrl/ ,< |Alt/ .> |Shft/ /? |  - _  |
- * `--------+-------+------+------+------+------+-------+------|    |------+-----+------+------+---------+--------+---------+-------'
- *                         | Mute |Shft[{|Space |Rse/Esc| Esc  |    | Del  |Lower| Bkspc|Shft]}| Special |
+ * ,--------------------------------------------.                                ,-----------------------------------------------.
+ * | ca_~ ` | cg_Q  | ag_W | sg_E | sa_R | sc_T |                                | sc_Y | sa_U |  sg_I   | ag_O  | cg_P  |ca_Del |
+ * |--------+-------+------+------+------+------|                                |------+------+---------+-------+-------+-------|
+ * | c_\ |  |   A   |   S  |   D  |   F  |  G   |                                |   H  |  J   |    K    |   L   |  ; :  | c_' " |
+ * |--------+-------+------+------+------+------+--------------.    ,------------+------+------+---------+-------+-------+-------|
+ * |Mse/Med |   Z   |   X  |  c_C |  g_V |  B   |  Tab  |M/Home|    |M/End |Enter|   N  | g_M  |  c_, <  |  . >  |  / ?  |  - _  |
+ * `--------+-------+------+------+------+------+-------+------|    |------+-----+------+------+---------+-------+-------+-------'
+ *                         | Mute | a_[{ |s_Esc |Space | Raise |    |Lower |Bkspc|s_+ = | a_]} | Special |
  *                         `-----------------------------------'    `------------------------------------'
  */
     [_QWERTY] = LAYOUT(
-     KC_GRV  , KC_Q  ,  KC_W   , KC_E  ,   KC_R ,   KC_T ,                                          KC_Y   , KC_U  , KC_I     ,   KC_O , KC_P     , KC_EQL ,
-     KC_BSLS , KC_A  ,  KC_S   , KC_D  ,   KC_F ,   KC_G ,                                          KC_H   , KC_J  , KC_K     ,   KC_L , KC_SCLN  , KC_QUOT,
-     MOUSE   ,SHIFT_Z,  ALT_X  , CTRL_C,   GUI_V,   KC_B , KC_TAB ,MOUS_HOME,     MOUS_END ,KC_ENT ,KC_N   , GUI_M , CTRL_COMM, ALT_DOT,SHIFT_SLSH, KC_MINS,
-                             KC_KB_MUTE, S_LBRC ,  KC_SPC,RAIS_ESC,   KC_ESC,     KC_DEL  ,LOWER  , KC_BSPC, S_RBRC, SPECIAL
+     LCA_GRV , LCG_Q ,  LAG_W  , LSG_E ,  LSA_R ,  LSC_T ,                                           RSC_Y , RSA_U ,    RSG_I ,  RAG_O , RCG_P   , LCA_DEL,
+     C_BSLS  , KC_A  ,  KC_S   , KC_D  ,   KC_F ,   KC_G ,                                           KC_H  , KC_J  ,    KC_K  ,   KC_L , KC_SCLN , C_QUOT ,
+     MOUSE   , KC_Z  ,  KC_X   ,CTRL_C ,  GUI_V ,   KC_B , KC_TAB ,MOUS_HOME,     MOUS_END ,KC_ENT , KC_N  , GUI_M , CTRL_COMM, KC_DOT , KC_SLSH , KC_MINS,
+                             KC_KB_MUTE, A_LBRC ,  S_ESC , KC_SPC ,  RAISE  ,     LOWER  ,  KC_BSPC, S_EQL , A_RBRC, SPECIAL
     ),
 
 /*
  * Lower Layer: Numbers and Arrow/Scroll Navigation
  *
  * ,-------------------------------------------.                                ,--------------------------------------------.
- * |        |  1   |  2   |  3   |  4   |  5   |                                |   6  |  7   |  8   |  9   |   0   |        |
+ * |    0   |  1   |  2   |  3   |  4   |  5   |                                |   6  |  7   |  8   |  9   |   0   |   1    |
  * |--------+------+------+------+------+------|                                |------+------+------+------+-------+--------|
  * |ScrlLt  |ScrlRt|PgDn  |ScrlDn|ScrlUp| PgUp |                                | Left | Down |  Up  |Right | Home  |  End   |
  * |--------+------+------+------+------+------+-------------.    ,-------------+------+------+------+------+-------+--------|
@@ -90,7 +103,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *                        `----------------------------------'    `----------------------------------'
  */
     [_LOWER] = LAYOUT(
-      _______,   KC_1 ,   KC_2 ,   KC_3 ,   KC_4 ,   KC_5 ,                                             KC_6 ,   KC_7 ,   KC_8 ,   KC_9 ,   KC_0 , _______,
+         KC_0,   KC_1 ,   KC_2 ,   KC_3 ,   KC_4 ,   KC_5 ,                                             KC_6 ,   KC_7 ,   KC_8 ,   KC_9 ,   KC_0 ,   KC_1 ,
       KC_WH_L, KC_WH_R, KC_PGDN, KC_WH_D, KC_WH_U, KC_PGUP,                                           KC_LEFT, KC_DOWN,  KC_UP , KC_RGHT, KC_HOME,  KC_END,
       _______, _______, _______, _______, _______, _______, _______, KC_PGDN,       KC_PGUP, _______, _______, _______, _______, _______, _______, _______,
                                  _______, _______, _______, _______, _______,       _______, _______, _______, _______, _______
@@ -178,9 +191,9 @@ bool encoder_update_user(uint8_t index, bool clockwise) {
     } else if (index == 1) {
         // Page up/Page down
         if (clockwise) {
-            tap_code(KC_PGDN);
-        } else {
             tap_code(KC_PGUP);
+        } else {
+            tap_code(KC_PGDN);
         }
     }
     return false;
