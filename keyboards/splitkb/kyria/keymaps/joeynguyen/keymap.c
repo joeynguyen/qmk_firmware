@@ -47,18 +47,18 @@ enum layers {
 #define MOUS_HOME   LT(MOUSE, KC_HOME)
 #define MOUS_END    LT(MOUSE, KC_END)
 
-#define LCA_GRV     LCA_T(KC_GRV)
-#define LCG_Q       MT(MOD_LCTL | MOD_LGUI, KC_Q)
-#define LSG_E       LSG_T(KC_E)
-#define LAG_W       LAG_T(KC_W)
-#define LSA_R       LSA_T(KC_R)
-#define LSC_T       MT(MOD_LSFT | MOD_LCTL, KC_T)
-#define LCA_DEL     LCA_T(KC_DEL)
-#define RCG_P       MT(MOD_RCTL | MOD_RGUI, KC_P)
-#define RSG_I       RSG_T(KC_I)
-#define RAG_O       RAG_T(KC_O)
-#define RSA_U       RSA_T(KC_U)
-#define RSC_Y       MT(MOD_RSFT | MOD_RCTL, KC_Y)
+#define LSC_GRV     MT(MOD_LSFT | MOD_LCTL, KC_GRV)
+#define RSC_DEL     MT(MOD_RSFT | MOD_RCTL, KC_DEL)
+#define LAC_Q       LCA_T(KC_Q)
+#define RAC_P       MT(MOD_RGUI | MOD_RALT, KC_P)
+#define LGC_W       MT(MOD_LGUI | MOD_LCTL, KC_W)
+#define RGC_O       MT(MOD_RGUI | MOD_RCTL, KC_O)
+#define LGA_E       LAG_T(KC_E)
+#define RGA_I       RAG_T(KC_I)
+#define LGS_R       LSG_T(KC_R)
+#define RGS_U       RSG_T(KC_U)
+#define LAS_T       LSA_T(KC_T)
+#define RAS_Y       RSA_T(KC_Y)
 
 
 #define SPECIAL LCAG(KC_SPC) // Hold Left Control, Alt and GUI and press Space
@@ -73,20 +73,20 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * Base Layer: QWERTY
  *
  * ,--------------------------------------------.                                ,-----------------------------------------------.
- * | ca_~ ` | cg_Q  | ag_W | sg_E | sa_R | sc_T |                                | sc_Y | sa_U |  sg_I   | ag_O  | cg_P  |ca_Del |
+ * | sc_~ ` | ac_Q  | gc_W | ga_E | gs_R | sa_T |                                | sa_Y | gs_U |  ga_I   | gc_O  | ac_P  |sc_Del |
  * |--------+-------+------+------+------+------|                                |------+------+---------+-------+-------+-------|
  * | c_\ |  |   A   |   S  |   D  |   F  |  G   |                                |   H  |  J   |    K    |   L   |  ; :  | c_' " |
  * |--------+-------+------+------+------+------+--------------.    ,------------+------+------+---------+-------+-------+-------|
  * |Mse/Med |   Z   |   X  |  c_C |  g_V |  B   |  Tab  |M/Home|    |M/End |Enter|   N  | g_M  |  c_, <  |  . >  |  / ?  |  - _  |
  * `--------+-------+------+------+------+------+-------+------|    |------+-----+------+------+---------+-------+-------+-------'
- *                         | Mute | a_[{ |s_Esc |Space | Raise |    |Lower |Bkspc|s_+ = | a_]} | Special |
+ *                         | Mute | a_[{ |Space |s_Esc | Raise |    |Lower |s_+ =|Bkspc | a_]} | Special |
  *                         `-----------------------------------'    `------------------------------------'
  */
     [_QWERTY] = LAYOUT(
-     LCA_GRV , LCG_Q ,  LAG_W  , LSG_E ,  LSA_R ,  LSC_T ,                                           RSC_Y , RSA_U ,    RSG_I ,  RAG_O , RCG_P   , LCA_DEL,
+     LSC_GRV , LAC_Q ,  LGC_W  , LGA_E ,  LGS_R ,  LAS_T ,                                           RAS_Y , RGS_U ,    RGA_I ,  RGC_O , RAC_P   , RSC_DEL,
      C_BSLS  , KC_A  ,  KC_S   , KC_D  ,   KC_F ,   KC_G ,                                           KC_H  , KC_J  ,    KC_K  ,   KC_L , KC_SCLN , C_QUOT ,
      MOUSE   , KC_Z  ,  KC_X   ,CTRL_C ,  GUI_V ,   KC_B , KC_TAB ,MOUS_HOME,     MOUS_END ,KC_ENT , KC_N  , GUI_M , CTRL_COMM, KC_DOT , KC_SLSH , KC_MINS,
-                             KC_KB_MUTE, A_LBRC ,  S_ESC , KC_SPC ,  RAISE  ,     LOWER  ,  KC_BSPC, S_EQL , A_RBRC, SPECIAL
+                             KC_KB_MUTE, A_LBRC , KC_SPC , S_ESC  ,  RAISE  ,     LOWER  ,  S_EQL  ,KC_BSPC, A_RBRC, SPECIAL
     ),
 
 /*
