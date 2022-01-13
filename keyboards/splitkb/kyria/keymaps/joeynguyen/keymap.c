@@ -50,7 +50,7 @@ enum layers {
 #define LSC_GRV     MT(MOD_LSFT | MOD_LCTL, KC_GRV)
 #define RSC_DEL     MT(MOD_RSFT | MOD_RCTL, KC_DEL)
 #define LAC_Q       LCA_T(KC_Q)
-#define RAC_P       MT(MOD_RGUI | MOD_RALT, KC_P)
+#define RAC_P       MT(MOD_RALT | MOD_RCTL, KC_P)
 #define LGC_W       MT(MOD_LGUI | MOD_LCTL, KC_W)
 #define RGC_O       MT(MOD_RGUI | MOD_RCTL, KC_O)
 #define LGA_E       LAG_T(KC_E)
