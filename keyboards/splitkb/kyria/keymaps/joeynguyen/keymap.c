@@ -42,10 +42,10 @@ enum layers {
 #define GUI_M       RGUI_T(KC_M)
 // #define GUI_B       LGUI_T(KC_B)
 // #define GUI_N       RGUI_T(KC_N)
-#define A_LBRC      LALT_T(KC_LBRC)
-#define A_RBRC      RALT_T(KC_RBRC)
-#define S_ESC       LSFT_T(KC_ESC)
-#define S_EQL       RSFT_T(KC_EQL)
+#define S_LBRC      LSFT_T(KC_LBRC)
+#define S_RBRC      RSFT_T(KC_RBRC)
+#define A_ESC       LALT_T(KC_ESC)
+#define A_EQL       RALT_T(KC_EQL)
 #define MOUS_HOME   LT(MOUSE, KC_HOME)
 #define MOUS_END    LT(MOUSE, KC_END)
 
@@ -80,14 +80,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |--------+-------+------+------+------+------+--------------.    ,------------+------+------+---------+-------+-------+-------|
  * |Mse/Med |   Z   |   X  |   C  |  g_V |  B   |  Tab  |M/Home|    |M/End |Enter|   N  | g_M  |   , <   |  . >  |  / ?  |  - _  |
  * `--------+-------+------+------+------+------+-------+------|    |------+-----+------+------+---------+-------+-------+-------'
- *                         | Mute | a_[{ |Space |s_Esc | Raise |    |Lower |s_+ =|Bkspc | a_]} | Special |
+ *                         | Mute | s_[{ |Space |a_Esc | Raise |    |Lower |a_= +|Bkspc | s_]} | Special |
  *                         `-----------------------------------'    `------------------------------------'
  */
     [_QWERTY] = LAYOUT(
      LSC_GRV , LAC_Q ,  LGC_W  , LGA_E ,  LGS_R ,  LAS_T ,                                           RAS_Y , RGS_U ,   RGA_I  ,  RGC_O , RAC_P   , RSC_DEL,
      C_BSLS  , KC_A  ,  KC_S   ,  KC_D ,   KC_F ,   KC_G ,                                           KC_H  ,  KC_J ,   KC_K   ,   KC_L , KC_SCLN , C_QUOT ,
      MOUSE   , KC_Z  ,  KC_X   ,  KC_C ,  GUI_V ,   KC_B , KC_TAB ,MOUS_HOME,     MOUS_END ,KC_ENT , KC_N ,  GUI_M ,   KC_COMM, KC_DOT , KC_SLSH , KC_MINS,
-                             KC_KB_MUTE, A_LBRC , KC_SPC , S_ESC  ,  RAISE  ,     LOWER  ,  S_EQL  ,KC_BSPC, A_RBRC,   SPECIAL
+                             KC_KB_MUTE, S_LBRC , KC_SPC , A_ESC  ,  RAISE  ,     LOWER  ,  A_EQL  ,KC_BSPC, S_RBRC,   SPECIAL
     ),
 
 /*
