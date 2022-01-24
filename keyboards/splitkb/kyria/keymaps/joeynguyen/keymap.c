@@ -34,12 +34,14 @@ enum layers {
 // #define CTL_QUOT MT(MOD_RCTL, KC_QUOTE)
 // #define CTL_MINS MT(MOD_RCTL, KC_MINUS)
 // #define ALT_ENT  MT(MOD_LALT, KC_ENT)
-#define CTRL_C      LCTL_T(KC_C)
+// #define CTRL_C      LCTL_T(KC_C)
+// #define CTRL_COMM   RCTL_T(KC_COMM)
 #define C_BSLS      LCTL_T(KC_BSLS)
 #define C_QUOT      RCTL_T(KC_QUOT)
 #define GUI_V       LGUI_T(KC_V)
-#define CTRL_COMM   RCTL_T(KC_COMM)
 #define GUI_M       RGUI_T(KC_M)
+// #define GUI_B       LGUI_T(KC_B)
+// #define GUI_N       RGUI_T(KC_N)
 #define A_LBRC      LALT_T(KC_LBRC)
 #define A_RBRC      RALT_T(KC_RBRC)
 #define S_ESC       LSFT_T(KC_ESC)
@@ -60,7 +62,6 @@ enum layers {
 #define LAS_T       LSA_T(KC_T)
 #define RAS_Y       RSA_T(KC_Y)
 
-
 #define SPECIAL LCAG(KC_SPC) // Hold Left Control, Alt and GUI and press Space
 
 // Note: LAlt/Enter (ALT_ENT) is not the same thing as the keyboard shortcut Alt+Enter.
@@ -77,16 +78,16 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |--------+-------+------+------+------+------|                                |------+------+---------+-------+-------+-------|
  * | c_\ |  |   A   |   S  |   D  |   F  |  G   |                                |   H  |  J   |    K    |   L   |  ; :  | c_' " |
  * |--------+-------+------+------+------+------+--------------.    ,------------+------+------+---------+-------+-------+-------|
- * |Mse/Med |   Z   |   X  |  c_C |  g_V |  B   |  Tab  |M/Home|    |M/End |Enter|   N  | g_M  |  c_, <  |  . >  |  / ?  |  - _  |
+ * |Mse/Med |   Z   |   X  |   C  |  g_V |  B   |  Tab  |M/Home|    |M/End |Enter|   N  | g_M  |   , <   |  . >  |  / ?  |  - _  |
  * `--------+-------+------+------+------+------+-------+------|    |------+-----+------+------+---------+-------+-------+-------'
  *                         | Mute | a_[{ |Space |s_Esc | Raise |    |Lower |s_+ =|Bkspc | a_]} | Special |
  *                         `-----------------------------------'    `------------------------------------'
  */
     [_QWERTY] = LAYOUT(
-     LSC_GRV , LAC_Q ,  LGC_W  , LGA_E ,  LGS_R ,  LAS_T ,                                           RAS_Y , RGS_U ,    RGA_I ,  RGC_O , RAC_P   , RSC_DEL,
-     C_BSLS  , KC_A  ,  KC_S   , KC_D  ,   KC_F ,   KC_G ,                                           KC_H  , KC_J  ,    KC_K  ,   KC_L , KC_SCLN , C_QUOT ,
-     MOUSE   , KC_Z  ,  KC_X   ,CTRL_C ,  GUI_V ,   KC_B , KC_TAB ,MOUS_HOME,     MOUS_END ,KC_ENT , KC_N  , GUI_M , CTRL_COMM, KC_DOT , KC_SLSH , KC_MINS,
-                             KC_KB_MUTE, A_LBRC , KC_SPC , S_ESC  ,  RAISE  ,     LOWER  ,  S_EQL  ,KC_BSPC, A_RBRC, SPECIAL
+     LSC_GRV , LAC_Q ,  LGC_W  , LGA_E ,  LGS_R ,  LAS_T ,                                           RAS_Y , RGS_U ,   RGA_I  ,  RGC_O , RAC_P   , RSC_DEL,
+     C_BSLS  , KC_A  ,  KC_S   ,  KC_D ,   KC_F ,   KC_G ,                                           KC_H  ,  KC_J ,   KC_K   ,   KC_L , KC_SCLN , C_QUOT ,
+     MOUSE   , KC_Z  ,  KC_X   ,  KC_C ,  GUI_V ,   KC_B , KC_TAB ,MOUS_HOME,     MOUS_END ,KC_ENT , KC_N ,  GUI_M ,   KC_COMM, KC_DOT , KC_SLSH , KC_MINS,
+                             KC_KB_MUTE, A_LBRC , KC_SPC , S_ESC  ,  RAISE  ,     LOWER  ,  S_EQL  ,KC_BSPC, A_RBRC,   SPECIAL
     ),
 
 /*
