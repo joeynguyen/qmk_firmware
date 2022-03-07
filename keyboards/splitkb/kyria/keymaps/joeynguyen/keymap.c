@@ -182,19 +182,19 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 #ifdef ENCODER_ENABLE
 bool encoder_update_user(uint8_t index, bool clockwise) {
 
-    if (index == 0) {
+    if (index == 0) { /* First encoder */
         // Volume control
         if (clockwise) {
-            tap_code(KC_VOLD);
-        } else {
             tap_code(KC_VOLU);
+        } else {
+            tap_code(KC_VOLD);
         }
-    } else if (index == 1) {
+    } else if (index == 1) { /* Second encoder */
         // Page up/Page down
         if (clockwise) {
-            tap_code(KC_PGUP);
+            tap_code(LCTL(KC_RIGHT));
         } else {
-            tap_code(KC_PGDN);
+            tap_code(LCTL(KC_LEFT));
         }
     }
     return false;
