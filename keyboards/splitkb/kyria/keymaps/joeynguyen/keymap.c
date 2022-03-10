@@ -235,7 +235,7 @@ bool encoder_update_user(uint8_t index, bool clockwise) {
 }
 void matrix_scan_user(void) {
     if (is_alt_cmd_tab_active) {
-        if (timer_elapsed(alt_cmd_tab_timer) > 500) {
+        if (timer_elapsed(alt_cmd_tab_timer) > 1000) { // 1 second
             unregister_code(KC_LGUI);
             is_alt_cmd_tab_active = false;
         }
