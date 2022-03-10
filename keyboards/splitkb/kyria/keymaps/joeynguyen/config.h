@@ -24,8 +24,11 @@
 #    define RGBLIGHT_LIMIT_VAL 150
 #endif
 
+// primary split keyboard half
+#define MASTER_RIGHT
+
 // encoder’s clockwise directions are incorrect, so we flip it
-#define ENCODER_DIRECTION_FLIP
+// #define ENCODER_DIRECTION_FLIP
 
 // Lets you roll mod-tap keys
 #define IGNORE_MOD_TAP_INTERRUPT
