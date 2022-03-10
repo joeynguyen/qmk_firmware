@@ -180,23 +180,66 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 
 #ifdef ENCODER_ENABLE
-bool encoder_update_user(uint8_t index, bool clockwise) {
+// https://docs.splitkb.com/hc/en-us/articles/360010513760-How-can-I-use-a-rotary-encoder-
+// Alt/Cmd-Tab application switching
+bool is_alt_cmd_tab_active = false;
+uint16_t alt_cmd_tab_timer = 0;
 
-    if (index == 0) { /* First encoder */
-        // Volume control
-        if (clockwise) {
-            tap_code(KC_VOLU);
-        } else {
-            tap_code(KC_VOLD);
-        }
-    } else if (index == 1) { /* Second encoder */
-        // Page up/Page down
-        if (clockwise) {
-            tap_code(LCTL(KC_RIGHT));
-        } else {
-            tap_code(LCTL(KC_LEFT));
-        }
+bool encoder_update_user(uint8_t index, bool clockwise) {
+    switch (get_highest_layer(layer_state)) {
+        case _RAISE:
+            if (index == 0) { /* First encoder */
+                // Volume control
+                if (clockwise) {
+                    tap_code(KC_VOLU);
+                } else {
+                    tap_code(KC_VOLD);
+                }
+            } else if (index == 1) { /* Second encoder */
+                // Ctrl + Left/Right Arrows
+                if (clockwise) {
+                    tap_code16(C(KC_LEFT));
+                } else {
+                    tap_code16(C(KC_RGHT));
+                }
+            }
+            break;
+        default:
+            if (index == 0) { /* First encoder */
+                // Volume control
+                if (clockwise) {
+                    tap_code(KC_VOLU);
+                } else {
+                    tap_code(KC_VOLD);
+                }
+            } else if (index == 1) { /* Second encoder */
+                // Command-Tab / Command-Shift-Tab
+                if (clockwise) {
+                    if (!is_alt_cmd_tab_active) {
+                        is_alt_cmd_tab_active = true;
+                        register_code(KC_LGUI);
+                    }
+                    alt_cmd_tab_timer = timer_read();
+                    tap_code16(S(KC_TAB));
+                } else {
+                    if (!is_alt_cmd_tab_active) {
+                        is_alt_cmd_tab_active = true;
+                        register_code(KC_LGUI);
+                    }
+                    alt_cmd_tab_timer = timer_read();
+                    tap_code16(KC_TAB);
+                }
+            }
     }
     return false;
 }
+void matrix_scan_user(void) {
+    if (is_alt_cmd_tab_active) {
+        if (timer_elapsed(alt_cmd_tab_timer) > 500) {
+            unregister_code(KC_LGUI);
+            is_alt_cmd_tab_active = false;
+        }
+    }
+}
+
 #endif
