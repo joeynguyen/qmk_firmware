@@ -54,19 +54,19 @@ enum layers {
 #define TAB_RT         LCTL(KC_TAB) // tab right
 
 #define LSC_GRV     MT(MOD_LSFT | MOD_LCTL, KC_GRV)
-#define RSC_BSLS    MT(MOD_LSFT | MOD_LCTL, KC_BSLS)
+#define LSC_BSLS    MT(MOD_LSFT | MOD_LCTL, KC_BSLS)
 // #define SC_GRV      C_S_T(KC_GRV)
 // #define SC_BSLS     C_S_T(KC_BSLS)
 #define LAC_Q       LCA_T(KC_Q)
-#define RAC_P       MT(MOD_LALT | MOD_LCTL, KC_P)
+#define LAC_P       MT(MOD_LALT | MOD_LCTL, KC_P)
 #define LGC_E       MT(MOD_LGUI | MOD_LCTL, KC_E)
-#define RGC_I       MT(MOD_LGUI | MOD_LCTL, KC_I)
+#define LGC_I       MT(MOD_LGUI | MOD_LCTL, KC_I)
 #define LGA_W       LAG_T(KC_W)
-#define RGA_O       LAG_T(KC_O)
+#define LGA_O       LAG_T(KC_O)
 #define LGS_R       LSG_T(KC_R)
-#define RGS_U       LSG_T(KC_U)
+#define LGS_U       LSG_T(KC_U)
 #define LAS_T       LSA_T(KC_T)
-#define RAS_Y       LSA_T(KC_Y)
+#define LAS_Y       LSA_T(KC_Y)
 
 #define SPECIAL LCAG(KC_SPC) // Hold Left Control, Alt and GUI and press Space
 
@@ -90,7 +90,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *                         `-------------------------------------'    `-------------------------------------'
  */
     [_QWERTY] = LAYOUT(
-     LSC_GRV, LAC_Q, LGA_W, LGC_E,  LGS_R,  LAS_T,                                          RAS_Y  ,  RGS_U,   RGC_I,  RGA_O,   RAC_P, RSC_BSLS,
+     LSC_GRV, LAC_Q, LGA_W, LGC_E,  LGS_R,  LAS_T,                                          LAS_Y  ,  LGS_U,   LGC_I,  LGA_O,   LAC_P, LSC_BSLS,
      C_DEL  ,  KC_A,  KC_S,  KC_D,   KC_F,   KC_G,                                          KC_H   ,   KC_J,    KC_K,   KC_L, KC_SCLN,   C_QUOT,
      MOUSE  ,  KC_Z,  KC_X,  KC_C,  GUI_V,   KC_B, KC_TAB, MOUS_HOME,     MOUS_END, KC_ENT, KC_N   ,  GUI_M, KC_COMM, KC_DOT, KC_SLSH,  KC_MINS,
                        KC_KB_MUTE, S_LBRC, KC_SPC,  A_ESC,     RAISE,     LOWER   , A_EQL , KC_BSPC, S_RBRC, SPECIAL
@@ -100,7 +100,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * Lower Layer: Numbers and Arrow/Scroll Navigation
  *
  * ,-----------------------------------------.                                 ,--------------------------------------------.
- * |   0   |  1   |  2  |  3   |  4    |  5  |                                 |   6  |  7    |  8  |   9   |   0   |   1   |
+ * |   0   |  1   |  2  |  3   |  4    |  5  |                                 |   6  |  7    |  8  |   9   |   0   |  \ |  |
  * |-------+------+-----+------+-------+-----|                                 |------+-------+-----+-------+-------+-------|
  * | LCtrl |      |     | PgUp | PgDn  |     |                                 | Left | Down  | Up  | Right |       | LCtrl |
  * |-------+------+-----+------+-------+-----+--------------.    ,-------------+------+-------+-----+-------+-------+-------|
@@ -110,7 +110,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *                      `-----------------------------------'    `----------------------------------'
  */
     [_LOWER] = LAYOUT(
-         KC_0,    KC_1,    KC_2,    KC_3,    KC_4,    KC_5,                                              KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_1,
+         KC_0,    KC_1,    KC_2,    KC_3,    KC_4,    KC_5,                                              KC_6,    KC_7,    KC_8,    KC_9,    KC_0, KC_BSLS,
       KC_LCTL, XXXXXXX, XXXXXXX, KC_PGUP, KC_PGDN, XXXXXXX,                                           KC_LEFT, KC_DOWN,   KC_UP, KC_RGHT, XXXXXXX, KC_RCTL,
       XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_LGUI, XXXXXXX, XXXXXXX, XXXXXXX,       XXXXXXX, XXXXXXX, XXXXXXX, KC_RGUI, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
                                  XXXXXXX, KC_LSFT, XXXXXXX, KC_LALT,   DESKS,       XXXXXXX, KC_RALT, XXXXXXX, KC_RSFT, XXXXXXX
