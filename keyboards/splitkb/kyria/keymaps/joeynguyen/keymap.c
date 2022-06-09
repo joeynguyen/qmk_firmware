@@ -39,34 +39,34 @@ enum layers {
 // #define CTRL_C      LCTL_T(KC_C)
 // #define CTRL_COMM   RCTL_T(KC_COMM)
 #define C_DEL          LCTL_T(KC_DEL)
-#define C_QUOT         RCTL_T(KC_QUOT)
+#define C_QUOT         LCTL_T(KC_QUOT)
 #define GUI_V          LGUI_T(KC_V)
-#define GUI_M          RGUI_T(KC_M)
+#define GUI_M          LGUI_T(KC_M)
 // #define GUI_B          LGUI_T(KC_B)
 // #define GUI_N          RGUI_T(KC_N)
 #define S_LBRC         LSFT_T(KC_LBRC)
-#define S_RBRC         RSFT_T(KC_RBRC)
+#define S_RBRC         LSFT_T(KC_RBRC)
 #define A_ESC          LALT_T(KC_ESC)
-#define A_EQL          RALT_T(KC_EQL)
+#define A_EQL          LALT_T(KC_EQL)
 #define MOUS_HOME      LT(MOUSE, KC_HOME)
 #define MOUS_END       LT(MOUSE, KC_END)
 #define TAB_LT         RCS(KC_TAB)  // tab left
 #define TAB_RT         LCTL(KC_TAB) // tab right
 
 #define LSC_GRV     MT(MOD_LSFT | MOD_LCTL, KC_GRV)
-#define RSC_BSLS    MT(MOD_RSFT | MOD_RCTL, KC_BSLS)
+#define RSC_BSLS    MT(MOD_LSFT | MOD_LCTL, KC_BSLS)
 // #define SC_GRV      C_S_T(KC_GRV)
 // #define SC_BSLS     C_S_T(KC_BSLS)
 #define LAC_Q       LCA_T(KC_Q)
-#define RAC_P       MT(MOD_RALT | MOD_RCTL, KC_P)
+#define RAC_P       MT(MOD_LALT | MOD_LCTL, KC_P)
 #define LGC_E       MT(MOD_LGUI | MOD_LCTL, KC_E)
-#define RGC_I       MT(MOD_RGUI | MOD_RCTL, KC_I)
+#define RGC_I       MT(MOD_LGUI | MOD_LCTL, KC_I)
 #define LGA_W       LAG_T(KC_W)
-#define RGA_O       RAG_T(KC_O)
+#define RGA_O       LAG_T(KC_O)
 #define LGS_R       LSG_T(KC_R)
-#define RGS_U       RSG_T(KC_U)
+#define RGS_U       LSG_T(KC_U)
 #define LAS_T       LSA_T(KC_T)
-#define RAS_Y       RSA_T(KC_Y)
+#define RAS_Y       LSA_T(KC_Y)
 
 #define SPECIAL LCAG(KC_SPC) // Hold Left Control, Alt and GUI and press Space
 
@@ -99,15 +99,15 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 /*
  * Lower Layer: Numbers and Arrow/Scroll Navigation
  *
- * ,-------------------------------------------.                              ,--------------------------------------------.
- * |  0   |  1   |  2   |  3   |  4   |  5   |                                |   6  |  7   |  8   |  9   |   0   |   1    |
- * |------+------+------+------+------+------|                                |------+------+------+------+-------+--------|
- * | Ctrl |      |      | PgUp | PgDn |      |                                | Left | Down |  Up  |Right |       |  Ctrl  |
- * |------+------+------+------+------+------+-------------.    ,-------------+------+------+------+------+-------+--------|
- * |      |      |      |      | Gui  |      |      |      |    |      |      |      | Gui  |      |      |       |        |
- * `--------------------+------+------+------+------+------|    |------+------+------+------+------+-----------------------'
- *                      |      | Shft |      | Alt  |DESKS |    |      | Alt  |      | Shft |      |
- *                      `----------------------------------'    `----------------------------------'
+ * ,-----------------------------------------.                                 ,--------------------------------------------.
+ * |   0   |  1   |  2  |  3   |  4    |  5  |                                 |   6  |  7    |  8  |   9   |   0   |   1   |
+ * |-------+------+-----+------+-------+-----|                                 |------+-------+-----+-------+-------+-------|
+ * | LCtrl |      |     | PgUp | PgDn  |     |                                 | Left | Down  | Up  | Right |       | LCtrl |
+ * |-------+------+-----+------+-------+-----+--------------.    ,-------------+------+-------+-----+-------+-------+-------|
+ * |       |      |     |      | LGui  |     |      |       |    |      |      |      | LGui  |     |       |       |       |
+ * `--------------------+------+-------+-----+------+-------|    |------+------+------+-------+-----+-----------------------'
+ *                      |      | LShft |     | LAlt | DESKS |    |      | LAlt |      | LShft |     |
+ *                      `-----------------------------------'    `----------------------------------'
  */
     [_LOWER] = LAYOUT(
          KC_0,    KC_1,    KC_2,    KC_3,    KC_4,    KC_5,                                              KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_1,
@@ -119,15 +119,15 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 /*
  * Raise Layer: Symbols and Function keys
  *
- * ,-----------------------------------------.                                 ,------------------------------------------.
- * |      |  !   |  @   |  #   |  $   |  %   |                                 |   ^  |   &   |  *   |  (  |  )   |       |
- * |------+------+------+------+------+------|                                 |------+------+------+------+------+-------|
- * | Ctrl |  F1  |  F2  |  F3  |  F4  |  F5  |                                 |  F6  |  F7  |  F8  |  F9  | F10  | Ctrl  |
- * |------+------+------+------+------+------+-------------.    ,--------------+------+------+------+------+------+-------|
- * |      |      |      |      | Gui  |      |      |CapsLk|    |PrtScn |      |      | Gui  |      |  F11 | F12  |       |
- * `--------------------+------+------+------+------+------|    |-------+------+------+------+------+---------------------'
- *                      |      | Shft |      | Alt  |      |    | DESKS | Alt  |      | Shft |      |
- *                      `----------------------------------'    `-----------------------------------'
+ * ,------------------------------------------.                                  ,----------------------------------------.
+ * |       |  !   |  @   |  #   |   $   |  %  |                                  |  ^  |   &   |  *   |  (  |  )  |       |
+ * |-------+------+------+------+-------+-----|                                  |-----+-------+------+-----+-----+-------|
+ * | LCtrl |  F1  |  F2  |  F3  |  F4   | F5  |                                  | F6  |  F7   |  F8  | F9  | F10 | RCtrl |
+ * |-------+------+------+------+-------+-----+--------------.    ,--------------+-----+-------+------+-----+-----+-------|
+ * |       |      |      |      | LGui  |     |      |CapsLk |    |PrtScn |      |     | RGui  |      | F11 | F12 |       |
+ * `---------------------+------+-------+-----+------+-------|    |-------+------+-----+-------+------+-------------------'
+ *                       |      | LShft |     | LAlt |       |    | DESKS | RAlt |     | RShft |      |
+ *                       `-----------------------------------'    `-----------------------------------'
  */
     [_RAISE] = LAYOUT(
       XXXXXXX,  KC_EXLM,  KC_AT  , KC_HASH, KC_DLR , KC_PERC,                                         KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN, XXXXXXX,
