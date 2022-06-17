@@ -47,7 +47,7 @@ enum layers {
 #define S_LBRC         LSFT_T(KC_LBRC)
 #define S_RBRC         LSFT_T(KC_RBRC)
 #define A_ESC          LALT_T(KC_ESC)
-#define A_EQL          LALT_T(KC_EQL)
+#define A_ENT          LALT_T(KC_ENT)
 #define MOUS_HOME      LT(MOUSE, KC_HOME)
 #define MOUS_END       LT(MOUSE, KC_END)
 #define TAB_LT         RCS(KC_TAB)  // tab left
@@ -70,7 +70,7 @@ enum layers {
 
 #define SPECIAL LCAG(KC_SPC) // Hold Left Control, Alt and GUI and press Space
 
-// Note: LAlt/Enter (ALT_ENT) is not the same thing as the keyboard shortcut Alt+Enter.
+// Note: LAlt/Enter (A_ENT) is not the same thing as the keyboard shortcut Alt+Enter.
 // The notation `mod/tap` denotes a key that activates the modifier `mod` when held down, and
 // produces the key `tap` when tapped (i.e. pressed and released).
 
@@ -84,16 +84,16 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |--------+-------+------+------+------+------|                                    |------+------+--------+-------+-------+-------|
  * | c_Del  |   A   |   S  |   D  |   F  |  G   |                                    |  H   |  J   |    K   |   L   |  ; :  | c_' " |
  * |--------+-------+------+------+------+------+----------------.    .--------------+------+------+--------+-------+-------+-------|
- * |Mse/Med |   Z   |   X  |   C  |  g_V |  B   |  Tab  | M/Home |    | M/End |Enter |  N   | g_M  |  , <   |  . >  |  / ?  |  - _  |
+ * |Mse/Med |   Z   |   X  |   C  |  g_V |  B   |  Tab  | M/Home |    | M/End | = +  |  N   | g_M  |  , <   |  . >  |  / ?  |  - _  |
  * `--------+-------+------+------+------+------+-------+--------|    |-------+------+------+------+--------+-------+-------+-------'
- *                         | Mute | s_[{ |Space | a_Esc | RAISE  |    | LOWER | a_=+ |Bkspc | s_]} |Special |
+ *                         | Mute | s_[{ |Space | a_Esc | RAISE  |    | LOWER |a_Ent |Bkspc | s_]} |Special |
  *                         `-------------------------------------'    `-------------------------------------'
  */
     [_QWERTY] = LAYOUT(
      LSC_GRV, LAC_Q, LGA_W, LGC_E,  LGS_R,  LAS_T,                                          LAS_Y  ,  LGS_U,   LGC_I,  LGA_O,   LAC_P, LSC_BSLS,
      C_DEL  ,  KC_A,  KC_S,  KC_D,   KC_F,   KC_G,                                          KC_H   ,   KC_J,    KC_K,   KC_L, KC_SCLN,   C_QUOT,
-     MOUSE  ,  KC_Z,  KC_X,  KC_C,  GUI_V,   KC_B, KC_TAB, MOUS_HOME,     MOUS_END, KC_ENT, KC_N   ,  GUI_M, KC_COMM, KC_DOT, KC_SLSH,  KC_MINS,
-                       KC_KB_MUTE, S_LBRC, KC_SPC,  A_ESC,     RAISE,     LOWER   , A_EQL , KC_BSPC, S_RBRC, SPECIAL
+     MOUSE  ,  KC_Z,  KC_X,  KC_C,  GUI_V,   KC_B, KC_TAB, MOUS_HOME,     MOUS_END, KC_EQL, KC_N   ,  GUI_M, KC_COMM, KC_DOT, KC_SLSH,  KC_MINS,
+                       KC_KB_MUTE, S_LBRC, KC_SPC,  A_ESC,     RAISE,     LOWER   , A_ENT , KC_BSPC, S_RBRC, SPECIAL
     ),
 
 /*
