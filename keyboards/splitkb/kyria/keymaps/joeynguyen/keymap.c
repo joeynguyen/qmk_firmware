@@ -31,6 +31,8 @@ enum layers {
 #define RAISE    MO(_RAISE)
 #define MOUSE    MO(_MOUSE)
 #define DESKS    MO(_DESKS)
+#define RAI_ESC  LT(RAISE, KC_ESC)
+#define LOW_ENT  LT(LOWER, KC_ENT)
 
 // #define CTL_ESC  MT(MOD_LCTL, KC_ESC)
 // #define CTL_QUOT MT(MOD_RCTL, KC_QUOTE)
@@ -79,21 +81,21 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 /*
  * Base Layer: QWERTY
  *
- * ,---------------------------------------------.                                        .------------------------------------------------,
- * | sc_~ ` | ac_Q  | ga_W | gc_E | gs_R | sa_T  |                                        |  sa_Y | gs_U |   gc_I  |  ga_O | ac_P  | sc_\| |
- * |--------+-------+------+------+------+-------|                                        |-------+------+---------+-------+-------+-------|
- * | c_Del  |   A   |   S  |   D  |   F  |    G  |                                        |   H   |  J   |    K    |   L   |  ; :  | c_' " |
- * |--------+-------+------+------+------+-------+----------------.       .---------------+-------+------+---------+-------+-------+-------|
- * |Mse/Med |   Z   |   X  |   C  |  g_V |   B   |  Tab  | M/Home |       | M/End |  = +  |   N   | g_M  |   , <   |  . >  |  / ?  |  - _  |
- * `--------+-------+------+------+------+-------+-------+--------|       |-------+-------+-------+------+---------+-------+-------+-------'
- *                         | Mute | s_[{ | a_Esc | Space | RAISE  |       | LOWER | Bkspc | a_Ent | s_]} | Special |
- *                         `--------------------------------------'       -----------------------------------------'
+ * ,--------------------------------------------.                                           .-----------------------------------------------,
+ * | sc_~ ` | ac_Q  | ga_W | gc_E | gs_R | sa_T |                                           | sa_Y | gs_U |   gc_I  |  ga_O | ac_P  | sc_\| |
+ * |--------+-------+------+------+------+------|                                           |------+------+---------+-------+-------+-------|
+ * | c_Del  |   A   |   S  |   D  |   F  |  G   |                                           |  H   |  J   |    K    |   L   |  ; :  | c_' " |
+ * |--------+-------+------+------+------+------+-----------------.       .-----------------+------+------+---------+-------+-------+-------|
+ * |Mse/Med |   Z   |   X  |   C  |  g_V |  B   |  Tab  | M/Home  |       |  M/End  |  = +  |  N   | g_M  |   , <   |  . >  |  / ?  |  - _  |
+ * `--------+-------+------+------+------+------+-------+---------|       |---------+-------+------+------+---------+-------+-------+-------'
+ *                         | Mute | s_[{ |  Alt | Space | RAI_Esc |       | LOW_Ent | Bkspc |  Alt | s_]} | Special |
+ *                         `--------------------------------------'       `-----------------------------------------'
  */
     [_QWERTY] = LAYOUT(
-     LSC_GRV, LAC_Q, LGA_W, LGC_E,  LGS_R,  LAS_T,                                            LAS_Y,  LGS_U,   LGC_I,  LGA_O,   LAC_P, LSC_BSLS,
-     C_DEL  ,  KC_A,  KC_S,  KC_D,   KC_F,   KC_G,                                            KC_H ,   KC_J,    KC_K,   KC_L, KC_SCLN,   C_QUOT,
-     MOUSE  ,  KC_Z,  KC_X,  KC_C,  GUI_V,   KC_B,  KC_TAB, MOUS_HOME,    MOUS_END, KC_EQL  , KC_N ,  GUI_M, KC_COMM, KC_DOT, KC_SLSH,  KC_MINS,
-                       KC_KB_MUTE, S_LBRC,  A_ESC,  KC_SPC,     RAISE,    LOWER   , KC_BSPC , A_ENT, S_RBRC, SPECIAL
+     LSC_GRV, LAC_Q, LGA_W, LGC_E,  LGS_R,   LAS_T,                                           LAS_Y  ,  LGS_U,   LGC_I,  LGA_O,   LAC_P, LSC_BSLS,
+     C_DEL  ,  KC_A,  KC_S,  KC_D,   KC_F,    KC_G,                                           KC_H   ,   KC_J,    KC_K,   KC_L, KC_SCLN,   C_QUOT,
+     MOUSE  ,  KC_Z,  KC_X,  KC_C,  GUI_V,    KC_B,  KC_TAB, MOUS_HOME,    MOUS_END, KC_EQL , KC_N   ,  GUI_M, KC_COMM, KC_DOT, KC_SLSH,  KC_MINS,
+                       KC_KB_MUTE, S_LBRC, KC_LALT,  KC_SPC,   RAI_ESC,    LOW_ENT , KC_BSPC, KC_RALT, S_RBRC, SPECIAL
     ),
 
 /*
