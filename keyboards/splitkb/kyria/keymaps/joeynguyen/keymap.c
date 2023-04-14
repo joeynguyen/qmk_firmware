@@ -48,6 +48,8 @@ enum layers {
 // #define GUI_N          RGUI_T(KC_N)
 #define S_LBRC         LSFT_T(KC_LBRC)
 #define S_RBRC         LSFT_T(KC_RBRC)
+#define S_A            LSFT_T(KC_A)
+#define S_SCLN         LSFT_T(KC_SCLN)
 #define A_ESC          LALT_T(KC_ESC)
 #define A_ENT          LALT_T(KC_ENT)
 #define MOUS_HOME      LT(MOUSE, KC_HOME)
@@ -84,7 +86,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * ,--------------------------------------------.                                           .-----------------------------------------------,
  * | sc_~ ` | ac_Q  | ga_W | gc_E | gs_R | sa_T |                                           | sa_Y | gs_U |   gc_I  |  ga_O | ac_P  | sc_\| |
  * |--------+-------+------+------+------+------|                                           |------+------+---------+-------+-------+-------|
- * | c_Del  |   A   |   S  |   D  |   F  |  G   |                                           |  H   |  J   |    K    |   L   |  ; :  | c_' " |
+ * | c_Del  |  s_A  |   S  |   D  |   F  |  G   |                                           |  H   |  J   |    K    |   L   | s_; : | c_' " |
  * |--------+-------+------+------+------+------+-----------------.       .-----------------+------+------+---------+-------+-------+-------|
  * |Mse/Med |   Z   |   X  |   C  |  g_V |  B   |  Tab  | M/Home  |       |  M/End  |  = +  |  N   | g_M  |   , <   |  . >  |  / ?  |  - _  |
  * `--------+-------+------+------+------+------+-------+---------|       |---------+-------+------+------+---------+-------+-------+-------'
@@ -93,7 +95,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
     [_QWERTY] = LAYOUT(
      LSC_GRV, LAC_Q, LGA_W, LGC_E,  LGS_R,   LAS_T,                                           LAS_Y  ,  LGS_U,   LGC_I,  LGA_O,   LAC_P, LSC_BSLS,
-     C_DEL  ,  KC_A,  KC_S,  KC_D,   KC_F,    KC_G,                                           KC_H   ,   KC_J,    KC_K,   KC_L, KC_SCLN,   C_QUOT,
+     C_DEL  ,   S_A,  KC_S,  KC_D,   KC_F,    KC_G,                                           KC_H   ,   KC_J,    KC_K,   KC_L,  S_SCLN,   C_QUOT,
      MOUSE  ,  KC_Z,  KC_X,  KC_C,  GUI_V,    KC_B,  KC_TAB, MOUS_HOME,    MOUS_END, KC_EQL , KC_N   ,  GUI_M, KC_COMM, KC_DOT, KC_SLSH,  KC_MINS,
                        KC_KB_MUTE, S_LBRC, KC_LALT,  KC_SPC,   RAI_ESC,    LOW_ENT , KC_BSPC, KC_RALT, S_RBRC, SPECIAL
     ),
@@ -172,7 +174,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *                      `-------------------------------------'                                                  `-------------------------------------'
  */
     [_DESKS] = LAYOUT(
-      XXXXXXX, G(C(KC_1)),    G(C(KC_2)),    G(C(KC_3)),    G(C(KC_4)),    G(C(KC_5)),                                              G(C(KC_6)), G(C(KC_7)), G(C(KC_8)), G(C(KC_9)), G(C(KC_0)),  G(C(KC_BSLS)),
+      XXXXXXX,    A(KC_1),       A(KC_2),       A(KC_3),       A(KC_4),       A(KC_5),                                              A(KC_6),       A(KC_7),    A(KC_8),    A(KC_9),    A(KC_0),     A(KC_MINS),
       XXXXXXX,    XXXXXXX,       XXXXXXX,       XXXXXXX,    C(KC_LEFT),       XXXXXXX,                                              XXXXXXX,    C(KC_RGHT),    XXXXXXX,    XXXXXXX,    XXXXXXX,        XXXXXXX,
       XXXXXXX,    XXXXXXX,       XXXXXXX,       XXXXXXX,       XXXXXXX,       XXXXXXX,  XXXXXXX,  XXXXXXX,       XXXXXXX,  XXXXXXX, XXXXXXX,       XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,        XXXXXXX,
                                                 XXXXXXX,       XXXXXXX,       XXXXXXX,  XXXXXXX,  XXXXXXX,       XXXXXXX,  XXXXXXX, XXXXXXX,       XXXXXXX,    XXXXXXX
