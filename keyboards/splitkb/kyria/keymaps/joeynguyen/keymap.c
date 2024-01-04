@@ -58,6 +58,8 @@ enum layers {
 #define TAB_LT         RCS(KC_TAB)  // tab left
 #define TAB_RT         LCTL(KC_TAB) // tab right
 #define GUI_TAB        LGUI(KC_TAB) // MacOS Command-Tab (switch to previous app)
+#define DESK_LT        C(KC_LEFT)   // MacOS - move Space left
+#define DESK_RT        C(KC_RGHT)   // MacOS - move Space right
 
 #define LSC_GRV     MT(MOD_LSFT | MOD_LCTL, KC_GRV)
 #define LSC_BSLS    MT(MOD_LSFT | MOD_LCTL, KC_BSLS)
@@ -85,21 +87,21 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 /*
  * Base Layer: QWERTY
  *
- * ,---------------------------------------------.                                         .-----------------------------------------------,
- * | sc_~ ` | ac_Q  | ga_W | gc_E | gs_R | sa_T  |                                         | sa_Y | gs_U |   gc_I  |  ga_O | ac_P  | sc_\| |
- * |--------+-------+------+------+------+-------|                                         |------+------+---------+-------+-------+-------|
- * | c_Del  |  s_A  |   S  |   D  |   F  |   G   |                                         |  H   |  J   |    K    |   L   | s_; : | c_' " |
- * |--------+-------+------+------+------+-------+-----------------.     .-----------------+------+------+---------+-------+-------+-------|
- * |Mse/Med |   Z   |   X  |   C  |  g_V |   B   | GuiTab | M/Home |     |  M/End  |  = +  |  N   | g_M  |   , <   |  . >  |  / ?  |  - _  |
- * `--------+-------+------+------+------+-------+-------+---------|     |---------+-------+------+------+---------+-------+-------+-------'
- *                         | Mute | s_[{ | a_Tab | Space | RAI_Esc |     | LOW_Ent | Bkspc | a_=+ | s_]} | Special |
- *                         `---------------------------------------'     `-----------------------------------------'
+ * ,----------------------------------------------.                                             .-----------------------------------------------,
+ * | sc_~ ` | ac_Q  | ga_W | gc_E  | gs_R | sa_T  |                                             | sa_Y | gs_U |   gc_I  |  ga_O | ac_P  | sc_\| |
+ * |--------+-------+------+-------+------+-------|                                             |------+------+---------+-------+-------+-------|
+ * | c_Del  |  s_A  |   S  |   D   |   F  |   G   |                                             |  H   |  J   |    K    |   L   | s_; : | c_' " |
+ * |--------+-------+------+-------+------+-------+-------------------.     .-------------------+------+------+---------+-------+-------+-------|
+ * |Mse/Med |   Z   |   X  |   C   |  g_V |   B   | DESK_LT | GuiTab  |     |  M/End  | DESK_RT |  N   | g_M  |   , <   |  . >  |  / ?  |  - _  |
+ * `--------+-------+------+-------+------+-------+---------+---------|     |---------+---------+------+------+---------+-------+-------+-------'
+ *                         |Special| s_[{ | a_Tab |  Space  | RAI_Esc |     | LOW_Ent |  Bkspc  | a_=+ | s_]} |  Mute   |
+ *                         `------------------------------------------'     `-------------------------------------------'
  */
     [_QWERTY] = LAYOUT(
-     LSC_GRV, LAC_Q, LGA_W, LGC_E,  LGS_R,   LAS_T,                                            LAS_Y,  LGS_U,   LGC_I,  LGA_O,   LAC_P, LSC_BSLS,
-     C_DEL  ,   S_A,  KC_S,  KC_D,   KC_F,    KC_G,                                            KC_H ,   KC_J,    KC_K,   KC_L,  S_SCLN,   C_QUOT,
-     MOUSE  ,  KC_Z,  KC_X,  KC_C,  GUI_V,    KC_B,  GUI_TAB, MOUS_HOME,    MOUS_END, KC_EQL , KC_N ,  GUI_M, KC_COMM, KC_DOT, KC_SLSH,  KC_MINS,
-                       KC_KB_MUTE, S_LBRC,   A_TAB,  KC_SPC ,   RAI_ESC,    LOW_ENT , KC_BSPC, A_EQL, S_RBRC, SPECIAL
+     LSC_GRV, LAC_Q, LGA_W, LGC_E,  LGS_R, LAS_T,                                            LAS_Y,  LGS_U,      LGC_I,  LGA_O,   LAC_P, LSC_BSLS,
+     C_DEL  ,   S_A,  KC_S,  KC_D,   KC_F,  KC_G,                                            KC_H ,   KC_J,       KC_K,   KC_L,  S_SCLN,   C_QUOT,
+     MOUSE  ,  KC_Z,  KC_X,  KC_C,  GUI_V,  KC_B, DESK_LT, GUI_TAB,       MOUS_END, DESK_RT, KC_N ,  GUI_M,    KC_COMM, KC_DOT, KC_SLSH,  KC_MINS,
+                          SPECIAL, S_LBRC, A_TAB,  KC_SPC, RAI_ESC,       LOW_ENT , KC_BSPC, A_EQL, S_RBRC, KC_KB_MUTE
     ),
 
 /*
@@ -177,7 +179,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
     [_DESKS] = LAYOUT(
       XXXXXXX,    A(KC_1),       A(KC_2),       A(KC_3),       A(KC_4),       A(KC_5),                                              A(KC_6),       A(KC_7),    A(KC_8),    A(KC_9),    A(KC_0),     A(KC_MINS),
-      XXXXXXX,    XXXXXXX,       XXXXXXX,       XXXXXXX,    C(KC_LEFT),       XXXXXXX,                                              XXXXXXX,    C(KC_RGHT),    XXXXXXX,    XXXXXXX,    XXXXXXX,        XXXXXXX,
+      XXXXXXX,    XXXXXXX,       XXXXXXX,       XXXXXXX,       DESK_LT,       XXXXXXX,                                              XXXXXXX,       DESK_RT,    XXXXXXX,    XXXXXXX,    XXXXXXX,        XXXXXXX,
       XXXXXXX,    XXXXXXX,       XXXXXXX,       XXXXXXX,       XXXXXXX,       XXXXXXX,  XXXXXXX,  XXXXXXX,       XXXXXXX,  XXXXXXX, XXXXXXX,       XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,        XXXXXXX,
                                                 XXXXXXX,       XXXXXXX,       XXXXXXX,  XXXXXXX,  XXXXXXX,       XXXXXXX,  XXXXXXX, XXXXXXX,       XXXXXXX,    XXXXXXX
     ),
