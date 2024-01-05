@@ -92,16 +92,16 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |--------+-------+------+-------+------+-------|                                             |------+------+---------+-------+-------+-------|
  * | c_Del  |  s_A  |   S  |   D   |   F  |   G   |                                             |  H   |  J   |    K    |   L   | s_; : | c_' " |
  * |--------+-------+------+-------+------+-------+-------------------.     .-------------------+------+------+---------+-------+-------+-------|
- * |Mse/Med |   Z   |   X  |   C   |  g_V |   B   | DESK_LT | GuiTab  |     |  M/End  | DESK_RT |  N   | g_M  |   , <   |  . >  |  / ?  |  - _  |
+ * |Mse/Med |   Z   |   X  |   C   |  g_V |   B   | GuiTab  | M/Home  |     |  M/End  | GuiTab  |  N   | g_M  |   , <   |  . >  |  / ?  |  - _  |
  * `--------+-------+------+-------+------+-------+---------+---------|     |---------+---------+------+------+---------+-------+-------+-------'
  *                         |Special| s_[{ | a_Tab |  Space  | RAI_Esc |     | LOW_Ent |  Bkspc  | a_=+ | s_]} |  Mute   |
  *                         `------------------------------------------'     `-------------------------------------------'
  */
     [_QWERTY] = LAYOUT(
-     LSC_GRV, LAC_Q, LGA_W, LGC_E,  LGS_R, LAS_T,                                            LAS_Y,  LGS_U,      LGC_I,  LGA_O,   LAC_P, LSC_BSLS,
-     C_DEL  ,   S_A,  KC_S,  KC_D,   KC_F,  KC_G,                                            KC_H ,   KC_J,       KC_K,   KC_L,  S_SCLN,   C_QUOT,
-     MOUSE  ,  KC_Z,  KC_X,  KC_C,  GUI_V,  KC_B, DESK_LT, GUI_TAB,       MOUS_END, DESK_RT, KC_N ,  GUI_M,    KC_COMM, KC_DOT, KC_SLSH,  KC_MINS,
-                          SPECIAL, S_LBRC, A_TAB,  KC_SPC, RAI_ESC,       LOW_ENT , KC_BSPC, A_EQL, S_RBRC, KC_KB_MUTE
+     LSC_GRV, LAC_Q, LGA_W, LGC_E,  LGS_R, LAS_T,                                              LAS_Y,  LGS_U,      LGC_I,  LGA_O,   LAC_P, LSC_BSLS,
+     C_DEL  ,   S_A,  KC_S,  KC_D,   KC_F,  KC_G,                                              KC_H ,   KC_J,       KC_K,   KC_L,  S_SCLN,   C_QUOT,
+     MOUSE  ,  KC_Z,  KC_X,  KC_C,  GUI_V,  KC_B, GUI_TAB, MOUS_HOME,       MOUS_END, GUI_TAB, KC_N ,  GUI_M,    KC_COMM, KC_DOT, KC_SLSH,  KC_MINS,
+                          SPECIAL, S_LBRC, A_TAB,  KC_SPC,   RAI_ESC,       LOW_ENT , KC_BSPC, A_EQL, S_RBRC, KC_KB_MUTE
     ),
 
 /*
