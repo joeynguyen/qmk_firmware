@@ -247,21 +247,21 @@ bool encoder_update_user(uint8_t index, bool clockwise) {
                         register_code(KC_LGUI);
                     }
                     alt_cmd_tab_timer = timer_read();
-                    tap_code16(S(KC_TAB));
+                    tap_code16(KC_TAB);
                 } else {
                     if (!is_alt_cmd_tab_active) {
                         is_alt_cmd_tab_active = true;
                         register_code(KC_LGUI);
                     }
                     alt_cmd_tab_timer = timer_read();
-                    tap_code16(KC_TAB);
+                    tap_code16(S(KC_TAB));
                 }
             } else if (index == 1) { /* Second encoder */
                 // Volume control
                 if (clockwise) {
-                    tap_code(KC_VOLU);
-                } else {
                     tap_code(KC_VOLD);
+                } else {
+                    tap_code(KC_VOLU);
                 }
             }
     }
