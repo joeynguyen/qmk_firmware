@@ -44,19 +44,18 @@ enum layers {
 #define C_QUOT         LCTL_T(KC_QUOT)
 #define GUI_V          LGUI_T(KC_V)
 #define GUI_M          LGUI_T(KC_M)
+#define C_B            LCTL_T(KC_B)
+#define C_N            LCTL_T(KC_N)
 // #define GUI_B          LGUI_T(KC_B)
 // #define GUI_N          RGUI_T(KC_N)
-#define S_LBRC         LSFT_T(KC_LBRC)
-#define S_RBRC         LSFT_T(KC_RBRC)
-#define S_A            LSFT_T(KC_A)
-#define S_SCLN         LSFT_T(KC_SCLN)
-#define A_TAB          LALT_T(KC_TAB)
-#define A_EQL          LALT_T(KC_EQL)
+#define S_TAB          LSFT_T(KC_TAB)
+#define A_SPC          LALT_T(KC_SPC)
+#define A_BSPC         LALT_T(KC_BSPC)
+#define S_EQL          LSFT_T(KC_EQL)
 #define A_ENT          LALT_T(KC_ENT)
-#define MOUS_HOME      LT(MOUSE, KC_HOME)
-#define MOUS_END       LT(MOUSE, KC_END)
-#define TAB_LT         RCS(KC_TAB)  // tab left
-#define TAB_RT         LCTL(KC_TAB) // tab right
+
+// #define TAB_LT         RCS(KC_TAB)  // tab left
+// #define TAB_RT         LCTL(KC_TAB) // tab right
 #define GUI_TAB        LGUI(KC_TAB) // MacOS Command-Tab (switch to previous app)
 #define DESK_LT        C(KC_LEFT)   // MacOS - move Space left
 #define DESK_RT        C(KC_RGHT)   // MacOS - move Space right
@@ -69,6 +68,7 @@ enum layers {
 #define LAC_P       MT(MOD_LALT | MOD_LCTL, KC_P)
 #define LGC_E       MT(MOD_LGUI | MOD_LCTL, KC_E)
 #define LGC_I       MT(MOD_LGUI | MOD_LCTL, KC_I)
+#define LGCS_MINS   MT(MOD_LGUI | MOD_LCTL | MOD_LSFT, KC_MINS)
 #define LGA_W       LAG_T(KC_W)
 #define LGA_O       LAG_T(KC_O)
 #define LGS_R       LSG_T(KC_R)
@@ -77,6 +77,9 @@ enum layers {
 #define LAS_Y       LSA_T(KC_Y)
 
 #define SPECIAL LCAG(KC_SPC) // Hold Left Control, Alt and GUI and press Space
+#define MOUS_HOME      LT(MOUSE, KC_HOME)
+#define MOUS_END       LT(MOUSE, KC_END)
+#define MOUS_SPECIAL   LT(MOUSE, SPECIAL)
 
 // Note: LAlt/Enter (A_ENT) is not the same thing as the keyboard shortcut Alt+Enter.
 // The notation `mod/tap` denotes a key that activates the modifier `mod` when held down, and
@@ -87,61 +90,61 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 /*
  * Base Layer: QWERTY
  *
- * ,----------------------------------------------.                                             .-----------------------------------------------,
- * | sc_~ ` | ac_Q  | ga_W | gc_E  | gs_R | sa_T  |                                             | sa_Y | gs_U |   gc_I  |  ga_O | ac_P  | sc_\| |
- * |--------+-------+------+-------+------+-------|                                             |------+------+---------+-------+-------+-------|
- * | c_Del  |  s_A  |   S  |   D   |   F  |   G   |                                             |  H   |  J   |    K    |   L   | s_; : | c_' " |
- * |--------+-------+------+-------+------+-------+-------------------.     .-------------------+------+------+---------+-------+-------+-------|
- * |Mse/Med |   Z   |   X  |   C   |  g_V |   B   | GuiTab  | M/Home  |     |  M/End  | GuiTab  |  N   | g_M  |   , <   |  . >  |  / ?  |  - _  |
- * `--------+-------+------+-------+------+-------+---------+---------|     |---------+---------+------+------+---------+-------+-------+-------'
- *                         |Special| s_[{ | a_Tab |  Space  | RAI_Esc |     | LOW_Ent |  Bkspc  | a_=+ | s_]} |  Mute   |
- *                         `------------------------------------------'     `-------------------------------------------'
+ * ,----------------------------------------------.                                             .------------------------------------------------,
+ * |   sc_~ ` | ac_Q | ga_W | gc_E | gs_R | sa_T  |                                             | sa_Y | gs_U |  gc_I   |  ga_O | ac_P | sc_\ |  |
+ * |----------+------+------+------+------+-------|                                             |------+------+---------+-------+------+---------|
+ * |   c_Del  |  A   |  S   |   D  |  F   |  G    |                                             |  H   |  J   |   K     |   L   |  ; : | c_' "   |
+ * |----------+------+------+------+------+-------+-------------------.     .-------------------+------+------+---------+-------+------+---------|
+ * | Mse/Spec |  Z   |  X   |   C  |  g_V |  c_B  |  GuiTab | M/Home  |     |  M/End  | GuiTab  | c_N  | g_M  |   , <   |  . >  |  / ? | gcs_- _ |
+ * `----------+------+------+------+------+-------+---------+---------|     |---------+---------+------+------+---------+-------+------+---------'
+ *                          | Mute | [ {  | s_Tab | a_Space | RAI_Esc |     | LOW_Ent |  Bkspc  | a_=+ |  ] } | Special |
+ *                          `-----------------------------------------'     `-------------------------------------------'
  */
     [_QWERTY] = LAYOUT(
-     LSC_GRV, LAC_Q, LGA_W, LGC_E,  LGS_R, LAS_T,                                              LAS_Y,  LGS_U,      LGC_I,  LGA_O,   LAC_P, LSC_BSLS,
-     C_DEL  ,   S_A,  KC_S,  KC_D,   KC_F,  KC_G,                                              KC_H ,   KC_J,       KC_K,   KC_L,  S_SCLN,   C_QUOT,
-     MOUSE  ,  KC_Z,  KC_X,  KC_C,  GUI_V,  KC_B, GUI_TAB, MOUS_HOME,       MOUS_END, GUI_TAB, KC_N ,  GUI_M,    KC_COMM, KC_DOT, KC_SLSH,  KC_MINS,
-                          SPECIAL, S_LBRC, A_TAB,  KC_SPC,   RAI_ESC,       LOW_ENT , KC_BSPC, A_EQL, S_RBRC, KC_KB_MUTE
+     LSC_GRV     , LAC_Q, LGA_W, LGC_E,   LGS_R, LAS_T,                                              LAS_Y,   LGS_U,   LGC_I,  LGA_O,   LAC_P,  LSC_BSLS,
+     C_DEL       ,  KC_A,  KC_S,  KC_D,    KC_F,  KC_G,                                               KC_H,    KC_J,    KC_K,   KC_L, KC_SCLN,    C_QUOT,
+     MOUS_SPECIAL,  KC_Z,  KC_X,  KC_C,   GUI_V,   C_B, GUI_TAB, MOUS_HOME,       MOUS_END, GUI_TAB,   C_N,   GUI_M, KC_COMM, KC_DOT, KC_SLSH, LGCS_MINS,
+                            KC_KB_MUTE, KC_LBRC, S_TAB,   A_SPC,   RAI_ESC,       LOW_ENT ,  A_BSPC, S_EQL, KC_RBRC, SPECIAL
     ),
 
 /*
  * Lower Layer: Numbers and Arrow/Scroll Navigation
  *
- * ,------------------------------------------.                                                   ,--------------------------------------------.
- * |   0   |  1   |  2  |  3   |  4    |  5   |                                                   |   6  |  7    |  8  |   9   |   0   |  \ |  |
- * |-------+------+-----+------+-------+------|                                                   |------+-------+-----+-------+-------+-------|
- * | LCtrl |      |     | PgUp | PgDn  |      |                                                   | Left | Down  | Up  | Right |       | LCtrl |
- * |-------+------+-----+------+-------+------+--------------.                      ,-------------+------+-------+-----+-------+-------+-------|
- * |       |      |     |      | LGui  |      |      |       |                      |      |      |      | LGui  |     |       |       |       |
- * `--------------------+------+-------+------+------+-------|                      |------+------+------+-------+-----+-----------------------'
- *                      |      | LShft | LAlt |      | DESKS |                      |      |      | LAlt | LShft |     |
- *                      `------------------------------------'                      `----------------------------------'
+ * ,-----------------------------------------.                                       ,------------------------------------------.
+ * |   0   |  1   |  2  |  3   |  4   |  5   |                                       |   6   |   7  |  8  |   9   |  0  |  \ |  |
+ * |-------+------+-----+------+------+------|                                       |-------+------+-----+-------+-----+-------|
+ * | LCtrl |      |     | PgUp | PgDn |      |                                       |  Left | Down | Up  | Right |     | RCtrl |
+ * |-------+------+-----+------+------+------+--------------.          ,-------------+-------+------+-----+-------+-----+-------|
+ * |       |      |     |      | LGui |LCtrl |      |       |          |      |      | RCtrl | RGui |     |       |     |       |
+ * `--------------------+------+------+------+------+-------|          |------+------+-------+------+-----+---------------------'
+ *                      |      |      |LShft | LAlt | DESKS |          |Lower | RAlt | RShft |      |     |
+ *                      `-----------------------------------'          `----------------------------------'
  */
     [_LOWER] = LAYOUT(
          KC_0,    KC_1,    KC_2,    KC_3,    KC_4,    KC_5,                                              KC_6,    KC_7,    KC_8,    KC_9,    KC_0, KC_BSLS,
       KC_LCTL, XXXXXXX, XXXXXXX, KC_PGUP, KC_PGDN, XXXXXXX,                                           KC_LEFT, KC_DOWN,   KC_UP, KC_RGHT, XXXXXXX, KC_RCTL,
-      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_LGUI, XXXXXXX, XXXXXXX, XXXXXXX,       XXXXXXX, XXXXXXX, XXXXXXX, KC_RGUI, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
-                                 XXXXXXX, KC_LSFT, KC_LALT, XXXXXXX,   DESKS,       XXXXXXX, XXXXXXX, KC_RALT, KC_RSFT, XXXXXXX
+      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_LGUI, KC_LCTL, XXXXXXX, XXXXXXX,       XXXXXXX, XXXXXXX, KC_RCTL, KC_RGUI, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+                                 XXXXXXX, XXXXXXX, KC_LSFT, KC_LALT,   DESKS,       XXXXXXX, KC_RALT, KC_RSFT, XXXXXXX, XXXXXXX
     ),
 
 /*
  * Raise Layer: Symbols and Function keys
  *
- * ,-------------------------------------------.                                                   ,-----------------------------------------.
- * |       |  !   |  @   |  #   |   $   |   %  |                                                   |  ^   |   &   |  *   |  (  |  )  |       |
- * |-------+------+------+------+-------+------|                                                   |------+-------+------+-----+-----+-------|
- * | LCtrl |  F1  |  F2  |  F3  |  F4   |  F5  |                                                   |  F6  |  F7   |  F8  | F9  | F10 | RCtrl |
- * |-------+------+------+------+-------+------+--------------.                     ,--------------+------+-------+------+-----+-----+-------|
- * |       |      |      |      | LGui  |      |      |CapsLk |                     |PrtScn |      |      | RGui  |      | F11 | F12 |       |
- * `---------------------+------+-------+------+------+-------|                     |-------+------+------+-------+------+-------------------'
- *                       |      | LShft | LAlt |      |       |                     | DESKS |      | RAlt | RShft |      |
- *                       `------------------------------------'                     `------------------------------------'
+ * ,------------------------------------------.                                       ,------------------------------------------.
+ * |       |  !   |  @   |  #   |   $  |   %  |                                       |   ^   |   &   |  *   |  (  |  )  |       |
+ * |-------+------+------+------+------+------|                                       |-------+-------+------+-----+-----+-------|
+ * | LCtrl |  F1  |  F2  |  F3  |  F4  |  F5  |                                       |  F6   |  F7   |  F8  | F9  | F10 | RCtrl |
+ * |-------+------+------+------+------+------+--------------.         ,--------------+-------+-------+------+-----+-----+-------|
+ * |       |      |      |      | LGui |LCtrl |      |CapsLk |         |PrtScn |      |       | RGui  |      | F11 | F12 |       |
+ * `---------------------+------+------+------+------+-------|         |-------+------+-------+-------+------+-------------------'
+ *                       |      |      |LShft | LAlt | Raise |         | DESKS | RAlt | RShft |      |      |
+ *                       `-----------------------------------'         `------------------------------------'
  */
     [_RAISE] = LAYOUT(
       XXXXXXX,  KC_EXLM,  KC_AT  , KC_HASH, KC_DLR , KC_PERC,                                         KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN, XXXXXXX,
       KC_LCTL,  KC_F1  ,  KC_F2  , KC_F3  , KC_F4  , KC_F5  ,                                         KC_F6  , KC_F7  , KC_F8  , KC_F9  , KC_F10 , KC_RCTL,
-      XXXXXXX,  XXXXXXX,  XXXXXXX, XXXXXXX, KC_LGUI, XXXXXXX, XXXXXXX, KC_CAPS,     KC_PSCR, XXXXXXX, XXXXXXX, KC_RGUI, XXXXXXX, KC_F11 , KC_F12 , XXXXXXX,
-                                   XXXXXXX, KC_LSFT, KC_LALT, XXXXXXX, XXXXXXX,       DESKS, XXXXXXX, KC_RALT, KC_RSFT, XXXXXXX
+      XXXXXXX,  XXXXXXX,  XXXXXXX, XXXXXXX, KC_LGUI, KC_LCTL, XXXXXXX, KC_CAPS,     KC_PSCR, XXXXXXX, KC_RCTL, KC_RGUI, XXXXXXX, KC_F11 , KC_F12 , XXXXXXX,
+                                   XXXXXXX, XXXXXXX, KC_LSFT, KC_LALT, XXXXXXX,       DESKS, KC_RALT, KC_RSFT, XXXXXXX, XXXXXXX
     ),
 
 /*
@@ -240,6 +243,13 @@ bool encoder_update_user(uint8_t index, bool clockwise) {
             break;
         default:
             if (index == 0) { /* First encoder */
+                // Volume control
+                if (clockwise) {
+                    tap_code(KC_VOLD);
+                } else {
+                    tap_code(KC_VOLU);
+                }
+            } else if (index == 1) { /* Second encoder */
                 // Command-Tab / Command-Shift-Tab
                 if (clockwise) {
                     if (!is_alt_cmd_tab_active) {
@@ -255,13 +265,6 @@ bool encoder_update_user(uint8_t index, bool clockwise) {
                     }
                     alt_cmd_tab_timer = timer_read();
                     tap_code16(S(KC_TAB));
-                }
-            } else if (index == 1) { /* Second encoder */
-                // Volume control
-                if (clockwise) {
-                    tap_code(KC_VOLD);
-                } else {
-                    tap_code(KC_VOLU);
                 }
             }
     }
