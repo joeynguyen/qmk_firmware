@@ -257,14 +257,14 @@ bool encoder_update_user(uint8_t index, bool clockwise) {
                         register_code(KC_LGUI);
                     }
                     alt_cmd_tab_timer = timer_read();
-                    tap_code16(KC_TAB);
+                    tap_code16(S(KC_TAB));
                 } else {
                     if (!is_alt_cmd_tab_active) {
                         is_alt_cmd_tab_active = true;
                         register_code(KC_LGUI);
                     }
                     alt_cmd_tab_timer = timer_read();
-                    tap_code16(S(KC_TAB));
+                    tap_code16(KC_TAB);
                 }
             }
     }
