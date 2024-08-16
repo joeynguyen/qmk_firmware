@@ -31,8 +31,12 @@ enum layers {
 #define RAISE    MO(_RAISE)
 #define MOUSE    MO(_MOUSE)
 #define DESKS    MO(_DESKS)
+// LT() only works with basic KC_ keys, e.g. no LT(MOUSE, HYPR(KC_SPC))
 #define RAI_ESC  LT(RAISE, KC_ESC)
 #define LOW_ENT  LT(LOWER, KC_ENT)
+#define MOUS_HOME      LT(MOUSE, KC_HOME)
+#define MOUS_END       LT(MOUSE, KC_END)
+#define MOUS_MENU      LT(MOUSE, KC_MENU)
 
 // #define CTL_ESC  MT(MOD_LCTL, KC_ESC)
 // #define CTL_QUOT MT(MOD_RCTL, KC_QUOTE)
@@ -76,10 +80,7 @@ enum layers {
 #define LAS_T       LSA_T(KC_T)
 #define LAS_Y       LSA_T(KC_Y)
 
-#define SPECIAL LCAG(KC_SPC) // Hold Left Control, Alt and GUI and press Space
-#define MOUS_HOME      LT(MOUSE, KC_HOME)
-#define MOUS_END       LT(MOUSE, KC_END)
-#define MOUS_SPECIAL   LT(MOUSE, SPECIAL)
+#define SPECIAL        HYPR(KC_SPC) // Hold Left Control, Alt and GUI and press Space
 
 // Note: LAlt/Enter (A_ENT) is not the same thing as the keyboard shortcut Alt+Enter.
 // The notation `mod/tap` denotes a key that activates the modifier `mod` when held down, and
@@ -103,7 +104,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_QWERTY] = LAYOUT(
      LSC_GRV     , LAC_Q, LGA_W, LGC_E,   LGS_R, LAS_T,                                              LAS_Y,   LGS_U,   LGC_I,  LGA_O,   LAC_P,  LSC_BSLS,
      C_DEL       ,  KC_A,  KC_S,  KC_D,    KC_F,  KC_G,                                               KC_H,    KC_J,    KC_K,   KC_L, KC_SCLN,    C_QUOT,
-     MOUS_SPECIAL,  KC_Z,  KC_X,  KC_C,   GUI_V,   C_B, GUI_TAB, MOUS_HOME,       MOUS_END, GUI_TAB,   C_N,   GUI_M, KC_COMM, KC_DOT, KC_SLSH, LGCS_MINS,
+     MOUS_MENU   ,  KC_Z,  KC_X,  KC_C,   GUI_V,   C_B, GUI_TAB, MOUS_HOME,       MOUS_END, GUI_TAB,   C_N,   GUI_M, KC_COMM, KC_DOT, KC_SLSH, LGCS_MINS,
                             KC_KB_MUTE, KC_LBRC, S_TAB,   A_SPC,   RAI_ESC,       LOW_ENT ,  A_BSPC, S_EQL, KC_RBRC, SPECIAL
     ),
 
@@ -245,9 +246,9 @@ bool encoder_update_user(uint8_t index, bool clockwise) {
             if (index == 0) { /* First encoder */
                 // Volume control
                 if (clockwise) {
-                    tap_code(KC_VOLU);
-                } else {
                     tap_code(KC_VOLD);
+                } else {
+                    tap_code(KC_VOLU);
                 }
             } else if (index == 1) { /* Second encoder */
                 // Command-Tab / Command-Shift-Tab

@@ -24,8 +24,8 @@
 #    define RGBLIGHT_LIMIT_VAL 150
 #endif
 
-// primary split keyboard half
-#define MASTER_RIGHT
+// primary split keyboard half - left by default
+// #define MASTER_RIGHT
 
 // encoder’s clockwise directions are incorrect, so we flip it
 // #define ENCODER_DIRECTION_FLIP
